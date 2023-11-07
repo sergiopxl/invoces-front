@@ -5,7 +5,8 @@ function getLogin() {
   const awaitDiv = document.querySelector(".await");
   formContaier.addEventListener("submit", (e) => {
     e.preventDefault();
-    awaitDiv.style.display = "flex";
+    const loader = new Loader("Esperando autenticación de servidor");
+    document.querySelector("body").append(loader.container);
     const formData = new FormData(formContaier);
     fetch(globalLoginQuery, {
       method: "POST",
@@ -20,9 +21,9 @@ function getLogin() {
         }
         if (typeof data == "object") {
           setSession(data);
-          window.location = "dashboard.html";
+          loader.destroy();
+          window.location = "pages/index.html";
         }
-        awaitDiv.style.display = "none";
       });
     });
   });
