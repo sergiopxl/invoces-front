@@ -21,9 +21,6 @@ class Client {
     this.phone = client.phone;
     this.address = client.address;
     this.contacts = client.contactos;
-    this.setButtons();
-    this.setClientData();
-    this.setContacts();
   }
   // método que inicializa los botones de acción de cada cliente
   setButtons() {
