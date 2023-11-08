@@ -1,0 +1,41 @@
+@import "_vars";
+*{
+  box-sizing: border-box;
+}
+html,body{
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+a{
+  color : $anchorColor;
+}
+#dashboard,.page-title-section,#breadcrumbs{
+  width: 90vw;
+  max-width: 1024px;
+  margin: 1rem auto;
+}
+
+.empty{
+  color: #999;
+  font-style: italic;
+  font-size: small;
+}
+.hidden{
+  display: none;
+}/*
+.save-button{
+  @include actionButon("save");
+}
+.delete-button{
+  @include actionButon("delete");
+}
+.action-button{
+  @include actionButon("action");
+}*/

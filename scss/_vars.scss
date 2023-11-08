@@ -1,0 +1,53 @@
+
+$background1 : var(--bg1);
+$background2 : var(--bg2);
+$backgroundGreen : var(--bg3);
+$backgroundRed : var(--bg4); 
+$background5 : var(--bg5);
+$backgroundNavBar: var(--bgnb);
+$textColor1 : var(--text1);
+$textColor2 : var(--text2);
+$textColor3 : var(--text3);
+$anchorColor : var(--anchor);
+/*$background1: rgb(204, 226, 236);
+$background2: steelblue;
+$background3: rgb(121, 175, 90);
+$background4: indianred;*/
+
+@media ( prefers-color-scheme : dark ){
+  :root{
+    --bg1 :rgb(67, 73, 83);
+    --bg2 :rgb(43, 114, 134);
+    --bg3 :rgb(87, 123, 8);
+    --bg4 : indianred;
+    --bg5 : var(--bg1);
+    --bgnb : #333;
+    --text1 : whitesmoke;
+    --anchor : rgb(120, 194, 255);
+  }
+}
+@media ( prefers-color-scheme : light ){
+  :root{
+    --bg1 :rgb(204, 226, 236);
+    --bg2 :steelblue;
+    --bg3 :rgb(116, 160, 22);
+    --bg4 : indianred;
+    --bg5 : #eee;
+    --bgnb : rgb(209, 228, 244);
+    --text1 : rgb(46, 46, 46);
+    --anchor : steelblue;
+  }
+}
+
+
+$small-padding : .25rem;
+$regular-padding : .5rem;
+$big-padding: 1rem;
+
+$small-margin : $small-padding;
+$regular-margin : $regular-padding;
+$big-margin : $big-padding;
+
+$small-radius : 3px;
+$regular-radius : 6px;
+$big-radius : 12px;

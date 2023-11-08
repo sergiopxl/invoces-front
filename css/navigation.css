@@ -1,0 +1,78 @@
+/*$background1: rgb(204, 226, 236);
+$background2: steelblue;
+$background3: rgb(121, 175, 90);
+$background4: indianred;*/
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg1:rgb(67, 73, 83);
+    --bg2:rgb(43, 114, 134);
+    --bg3:rgb(87, 123, 8);
+    --bg4: indianred;
+    --bg5: var(--bg1);
+    --bgnb: #333;
+    --text1: whitesmoke;
+    --anchor: rgb(120, 194, 255);
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg1:rgb(204, 226, 236);
+    --bg2:steelblue;
+    --bg3:rgb(116, 160, 22);
+    --bg4: indianred;
+    --bg5: #eee;
+    --bgnb: rgb(209, 228, 244);
+    --text1: rgb(46, 46, 46);
+    --anchor: steelblue;
+  }
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+#nav-main {
+  background-color: var(--bgnb);
+  padding: 0.25rem 1rem;
+  padding-left: 2rem;
+}
+
+#nav-main > ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1.5rem;
+}
+
+#nav-main ul li {
+  cursor: pointer;
+}
+
+#nav-main > ul > li {
+  position: relative;
+  padding: 0.5rem;
+}
+
+#nav-main .nav-parent > ul {
+  position: absolute;
+  background-color: var(--bgnb);
+  -webkit-box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.5);
+  min-width: 100%;
+  display: none;
+  padding-top: 0.25rem;
+  left: 0;
+  top: 2rem;
+}
+
+#nav-main .nav-parent > ul > li {
+  padding: 0.25rem 1rem;
+}
+
+#nav-main .nav-parent:hover ul {
+  display: block;
+}/*# sourceMappingURL=navigation.css.map */
