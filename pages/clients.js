@@ -93,8 +93,6 @@ const clientList = () => {
     });
   }
 
-
-
   function buscarCliente(cliente) {
     let finds = allClients.filter((finded) => {
       return finded.name.toUpperCase().includes(cliente.toUpperCase()) || finded.cif.toUpperCase().includes(cliente.toUpperCase());

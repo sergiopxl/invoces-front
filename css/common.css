@@ -26,6 +26,34 @@ $background4: indianred;*/
     --anchor: steelblue;
   }
 }
+/*$background1: rgb(204, 226, 236);
+$background2: steelblue;
+$background3: rgb(121, 175, 90);
+$background4: indianred;*/
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg1:rgb(67, 73, 83);
+    --bg2:rgb(43, 114, 134);
+    --bg3:rgb(87, 123, 8);
+    --bg4: indianred;
+    --bg5: var(--bg1);
+    --bgnb: #333;
+    --text1: whitesmoke;
+    --anchor: rgb(120, 194, 255);
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg1:rgb(204, 226, 236);
+    --bg2:steelblue;
+    --bg3:rgb(116, 160, 22);
+    --bg4: indianred;
+    --bg5: #eee;
+    --bgnb: rgb(209, 228, 244);
+    --text1: rgb(46, 46, 46);
+    --anchor: steelblue;
+  }
+}
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -62,13 +90,55 @@ a {
 
 .hidden {
   display: none;
-} /*
-.save-button{
-  @include actionButon("save");
 }
-.delete-button{
-  @include actionButon("delete");
+
+.save-button {
+  padding: 0.25rem 0.5rem;
+  margin: 0.5rem;
+  background-color: var(--bg3);
+  border: 2px solid var(--bg3);
+  border-radius: 6px;
+  color: white;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: pointer;
 }
-.action-button{
-  @include actionButon("action");
-}*//*# sourceMappingURL=common.css.map */
+.save-button:hover {
+  background-color: white;
+  border-color: var(--bg3);
+  color: var(--bg3);
+}
+
+.delete-button {
+  padding: 0.25rem 0.5rem;
+  margin: 0.5rem;
+  background-color: var(--bg4);
+  border: 2px solid var(--bg4);
+  border-radius: 6px;
+  color: white;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.delete-button:hover {
+  background-color: white;
+  border-color: var(--bg4);
+  color: var(--bg4);
+}
+
+.action-button {
+  padding: 0.25rem 0.5rem;
+  margin: 0.5rem;
+  background-color: var(--bg2);
+  border: 2px solid var(--bg2);
+  border-radius: 6px;
+  color: white;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.action-button:hover {
+  background-color: white;
+  border-color: var(--bg2);
+  color: var(--bg2);
+}/*# sourceMappingURL=common.css.map */

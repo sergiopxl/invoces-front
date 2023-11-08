@@ -35,7 +35,12 @@ class FormField {
     this.fieldInput = document.createElement("input");
     this.fieldInput.setAttribute("name", name);
     this.fieldInput.setAttribute("type", type);
-    this.fieldInput.value = data;
+    if(data && data != ""){
+      this.fieldInput.value = data;
+    }else{
+      this.fieldInput.value = "";
+    }
+    
     this.container.append(this.fieldLabel, this.fieldInput);
   }
 }

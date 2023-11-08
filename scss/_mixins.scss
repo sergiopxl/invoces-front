@@ -1,0 +1,28 @@
+@import "_vars";
+
+@mixin actionButon($type){
+  $buttonColor : default;
+  @if($type == "save"){
+    $buttonColor : $backgroundGreen ;
+  }
+  @if($type == "delete"){
+    $buttonColor : $backgroundRed ;
+  }
+  @if($type == "action"){
+    $buttonColor : $background2 ;
+  }
+
+  padding: $small-padding $regular-padding;
+  margin: .5rem;
+  background-color: $buttonColor;
+  border: 2px solid $buttonColor;
+  border-radius: $regular-radius;
+  color: white;
+  transition: all .5s;
+  cursor: pointer;
+  &:hover{
+    background-color: white;
+    border-color: $buttonColor;
+    color: $buttonColor;
+  }
+}

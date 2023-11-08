@@ -1,0 +1,34 @@
+@import "_vars";
+.pagination{
+  display: flex;
+  align-items: center;
+  padding: .5rem;
+}
+.pagination-totals{
+  margin-right: 1.5rem;
+}
+.pagination-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: .3rem;
+  min-width: 1.75rem;  
+  padding: .3rem;
+  height: 1.75rem;
+  border: 2px solid transparent;
+  color: $textColor1;
+  border-radius: 5px;
+  transition: all .5s;
+  cursor: pointer;
+}
+.pagination-button:hover{
+  background-color: $background1;
+  border: 2px solid $textColor1;
+}
+.pagination-button.actual-page{
+  background-color: $background1;
+  border:  2px solid $textColor1 ;
+  font-weight: bold;
+  color: $textColor1;
+  cursor: default;
+}

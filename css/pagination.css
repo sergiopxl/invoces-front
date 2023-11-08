@@ -1,0 +1,76 @@
+/*$background1: rgb(204, 226, 236);
+$background2: steelblue;
+$background3: rgb(121, 175, 90);
+$background4: indianred;*/
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg1:rgb(67, 73, 83);
+    --bg2:rgb(43, 114, 134);
+    --bg3:rgb(87, 123, 8);
+    --bg4: indianred;
+    --bg5: var(--bg1);
+    --bgnb: #333;
+    --text1: whitesmoke;
+    --anchor: rgb(120, 194, 255);
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg1:rgb(204, 226, 236);
+    --bg2:steelblue;
+    --bg3:rgb(116, 160, 22);
+    --bg4: indianred;
+    --bg5: #eee;
+    --bgnb: rgb(209, 228, 244);
+    --text1: rgb(46, 46, 46);
+    --anchor: steelblue;
+  }
+}
+.pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem;
+}
+
+.pagination-totals {
+  margin-right: 1.5rem;
+}
+
+.pagination-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0.3rem;
+  min-width: 1.75rem;
+  padding: 0.3rem;
+  height: 1.75rem;
+  border: 2px solid transparent;
+  color: var(--text1);
+  border-radius: 5px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.pagination-button:hover {
+  background-color: var(--bg1);
+  border: 2px solid var(--text1);
+}
+
+.pagination-button.actual-page {
+  background-color: var(--bg1);
+  border: 2px solid var(--text1);
+  font-weight: bold;
+  color: var(--text1);
+  cursor: default;
+}/*# sourceMappingURL=pagination.css.map */
