@@ -80,7 +80,7 @@ const clientList = () => {
         }
         if (data[0] == 401) {
           alert("Tiempo de sesion expirado");
-          window.location = "index.html";
+          window.location = "../index.html";
         }
         //console.log('Headers: ', headers)
         if (data.length > maxResultsByPage) {
@@ -165,16 +165,31 @@ function setFormUpadateClient(client) {
   dashBoard.innerHTML = "";
   console.log("setFormUpadateClient: ", client);
 
-  const clientFormEdit = document.createElement("form");
-  clientFormEdit.id = "client-form";
+  /*const clientFormEdit = document.createElement("form");
+  clientFormEdit.id = "client-form";*/
+  const clientFormEditFields = new Array();
+
+  clientFormEditFields.push(["Cliente activo: ", "active", "checkbox", "", "client-form-fieldset"]);
+  clientFormEditFields.push(["id:", "id", "hidden", client.id, "hidden"]);
+  clientFormEditFields.push(["Nombre facturación: ", "facturation-name", "text", client.name, "client-form-fieldset"]);
+  clientFormEditFields.push(["Nombre comercial: ", "alias", "text", client.alias, "client-form-fieldset"]);
+  clientFormEditFields.push(["C.I.F.: ", "cif", "text", client.cif, "client-form-fieldset"]);
+  clientFormEditFields.push(["Teléfono: ", "phone", "text", client.phone, "client-form-fieldset"]);
+  clientFormEditFields.push(["Dirección: ", "address", "text", client.address, "client-form-fieldset"]);
+  clientFormEditFields.push(["C.P.: ", "cp", "text", client.cp, "client-form-fieldset"]);
+  clientFormEditFields.push(["Provincia: ", "province", "text", client.province, "client-form-fieldset"]);
+  clientFormEditFields.push(["Población: ", "population", "text", client.population, "client-form-fieldset"]);
+
+  const clientFormEdit = new Form("client-form","UPDATE", clientFormEditFields);
+  
 
   const clientFormData = document.createElement("div");
   clientFormData.classList.add("client-form-data-block");
-  clientFormEdit.append(clientFormData);
-  dashBoard.append(clientFormEdit);
+  //clientFormEdit.append(clientFormData);
+  dashBoard.append(clientFormEdit.container);
 
-  setClientData(client);
-  clientFormEdit.append(setClientContacts(client));
+  //setClientData(client);
+  //clientFormEdit.append(setClientContacts(client));
 
 
   function setClientData(client) {
