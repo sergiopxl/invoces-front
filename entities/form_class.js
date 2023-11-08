@@ -1,18 +1,39 @@
 class Form{
   container;
-  constructor(id,method,fields){
+  wrapper;
+  saveButton;
+  header
+  constructor(headerContent,id,method,fields,action){
     this.container = document.createElement("form");
     this.container.id = id;
+    this.wrapper = document.createElement("div");
+    this.wrapper.classList.add("client-form-data-block");
+    this.saveButton =  document.createElement("button");
+    this.saveButton.classList.add("save-button");
+    this.saveButton.textContent = "Guardar cambios";
+    this.saveButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      action();
+    });
+    if(headerContent && headerContent != ""){
+      this.header = document.createElement("small");
+      this.header.classList.add("header-form");
+      this.header.textContent = headerContent;
+      this.wrapper.append(this.header);
+    }
+    this.container.append(this.wrapper);
     switch(method){
       case "UPDATE" : 
      this.setFields(fields);
     }
+    this.wrapper.append(this.saveButton);
   }
   setFields(fields){
-    fields.forEach(field => {
-      console.log(field[0]);
-      const newField = new FormField(field[0],field[1],field[2],field[3],field[4]);
-      this.container.append(newField.container);
+    console.log("fields[0]",fields[0].data);
+    //TODO: estoy hay que repensarlo por que tiene numeros mágicos y no es legible
+    fields.forEach(field => {      
+      const newField = new FormField(field.label,field.name,field.type,field.data,field.cssClass);
+      this.wrapper.append(newField.container);
     });
   }
 }
@@ -39,6 +60,9 @@ class FormField {
       this.fieldInput.value = data;
     }else{
       this.fieldInput.value = "";
+    }
+    if(type == "checkbox"){
+      this.fieldInput.setAttribute("checked", "checked");
     }
     
     this.container.append(this.fieldLabel, this.fieldInput);

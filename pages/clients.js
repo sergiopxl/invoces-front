@@ -5,12 +5,10 @@ console.log("clients.js 1.1");
   form_field_class.js
 */
 
-
 let allClients;
 let sessionData;
 const dashBoard = document.querySelector("#dashboard");
 const pageTitle = document.querySelector("#page-title-h1");
-
 
 const clientList = () => {
   pageTitle.textContent = "Listado de clientes";
@@ -65,9 +63,9 @@ const clientList = () => {
   dashBoard.append(clientsListTools, clientListContainer);
 
   getResults();
- 
+
   function getResults() {
-    const headers = setHeadersAuthSesion(); // Este método esta en el archivo de session.js    
+    const headers = setHeadersAuthSesion(); // Este método esta en el archivo de session.js
     fetch(globalClientsGet, {
       method: "GET",
       headers: headers,
@@ -166,20 +164,85 @@ function setFormUpadateClient(client) {
   /*const clientFormEdit = document.createElement("form");
   clientFormEdit.id = "client-form";*/
   const clientFormEditFields = new Array();
+  const fieldId = {
+    label: "id:",
+    name: "id",
+    type: "hidden",
+    data: client.id,
+    cssClass: "hidden",
+  };
+  const fieldActive = {
+    label: "Cliente activo: ",
+    name: "active",
+    type: "checkbox",
+    data: client.activo,
+    cssClass: "client-form-fieldset",
+  };
+  const fieldName = {
+    label: "Nombre facturación: ",
+    name: "facturation-name",
+    type: "text",
+    data: client.name,
+    cssClass: "client-form-fieldset",
+  };
 
-  clientFormEditFields.push(["Cliente activo: ", "active", "checkbox", "", "client-form-fieldset"]);
-  clientFormEditFields.push(["id:", "id", "hidden", client.id, "hidden"]);
-  clientFormEditFields.push(["Nombre facturación: ", "facturation-name", "text", client.name, "client-form-fieldset"]);
-  clientFormEditFields.push(["Nombre comercial: ", "alias", "text", client.alias, "client-form-fieldset"]);
-  clientFormEditFields.push(["C.I.F.: ", "cif", "text", client.cif, "client-form-fieldset"]);
-  clientFormEditFields.push(["Teléfono: ", "phone", "text", client.phone, "client-form-fieldset"]);
-  clientFormEditFields.push(["Dirección: ", "address", "text", client.address, "client-form-fieldset"]);
-  clientFormEditFields.push(["C.P.: ", "cp", "text", client.cp, "client-form-fieldset"]);
-  clientFormEditFields.push(["Provincia: ", "province", "text", client.province, "client-form-fieldset"]);
-  clientFormEditFields.push(["Población: ", "population", "text", client.population, "client-form-fieldset"]);
+  const fieldAlias = {
+    label: "Nombre comercial: ",
+    name: "alias",
+    type: "text",
+    data: client.alias,
+    cssClass: "client-form-fieldset",
+  };
+  const fieldCif = {
+    label: "C.I.F.: ",
+    name: "cif",
+    type: "text",
+    data: client.cif,
+    cssClass: "client-form-fieldset",
+  };
+  const fieldPhone = {
+    label: "Teléfono: ",
+    name: "phone",
+    type: "text",
+    data: client.phone,
+    cssClass: "client-form-fieldset",
+  };
+  const fieldAddress = {
+    label: "Dirección: ",
+    name: "address",
+    type: "text",
+    data: client.address,
+    cssClass: "client-form-fieldset",
+  };
+  const fieldCP = {
+    label: "C.P.: ",
+    name: "cp",
+    type: "text",
+    data: client.cp,
+    cssClass: "client-form-fieldset",
+  };
+  const fieldProvince = {
+    label: "Provincia: ",
+    name: "province",
+    type: "text",
+    data: client.province,
+    cssClass: "client-form-fieldset",
+  };
+  const fieldPopulation = {
+    label: "Población: ",
+    name: "population",
+    type: "text",
+    data: client.population,
+    cssClass: "client-form-fieldset",
+  };
 
-  const clientFormEdit = new Form("client-form","UPDATE", clientFormEditFields);
+  clientFormEditFields.push(fieldId,fieldActive,fieldName,fieldAlias,fieldCif,fieldPhone,fieldAddress,fieldCP,fieldProvince,fieldPopulation);
+
+  const clientFormEdit = new Form("id: " + client.id,"client-form", "UPDATE", clientFormEditFields, updateClient);
   
+  /*function saluda() {
+    alert("hola");
+  }*/
 
   const clientFormData = document.createElement("div");
   clientFormData.classList.add("client-form-data-block");
@@ -189,73 +252,65 @@ function setFormUpadateClient(client) {
   //setClientData(client);
   //clientFormEdit.append(setClientContacts(client));
 
-
   function setClientData(client) {
-    
-      const checkActive = new FormField("Cliente activo: ", "active", "checkbox", "", "client-form-fieldset");
-      if (client.activo == 1) {
-
-        checkActive.container.querySelector("input").setAttribute("checked", "checked");
-        checkActive.container.querySelector("input").value = 1;
+    const checkActive = new FormField("Cliente activo: ", "active", "checkbox", "", "client-form-fieldset");
+    if (client.activo == 1) {
+      checkActive.container.querySelector("input").setAttribute("checked", "checked");
+      checkActive.container.querySelector("input").value = 1;
+    } else {
+      checkActive.container.querySelector("input").value = 1;
+    }
+    checkActive.container.querySelector("input").addEventListener("change", (e) => {
+      if (e.target.checked) {
+        e.target.value = 1;
       } else {
-        checkActive.container.querySelector("input").value = 1;
+        e.target.value = 0;
       }
-      checkActive.container.querySelector("input").addEventListener("change", (e) => {
-        if (e.target.checked) {
-          e.target.value = 1;
-        } else {
-          e.target.value = 0;
-        }
-      });
-      const clientId = document.createElement("small");
-      clientId.classList.add("client-form-id");
-      clientId.textContent = "id: " + client.id;
+    });
+    const clientId = document.createElement("small");
+    clientId.classList.add("client-form-id");
+    clientId.textContent = "id: " + client.id;
 
-      const inputId = new FormField("id:", "id", "hidden", client.id, "hidden");
-      const inputFacturacionName = new FormField("Nombre facturación: ", "facturation-name", "text", client.name, "client-form-fieldset");
-      const inputAlias = new FormField("Nombre comercial: ", "alias", "text", client.alias, "client-form-fieldset");
-      const inputCif = new FormField("C.I.F.: ", "cif", "text", client.cif, "client-form-fieldset");
-      const inputPhone = new FormField("Teléfono: ", "phone", "text", client.phone, "client-form-fieldset");
-      const inputAddress = new FormField("Dirección: ", "address", "text", client.address, "client-form-fieldset");
-      const inputCP = new FormField("C.P.: ", "cp", "text", client.cp, "client-form-fieldset");
-      const inputProvince = new FormField("Provincia: ", "province", "text", client.province, "client-form-fieldset");
-      const inputPopulation = new FormField("Población: ", "population", "text", client.population, "client-form-fieldset");
-      //const inputCountry = new FormField("Pais: ", "country", "text", client.pais, "client-form-fieldset");
+    const inputId = new FormField("id:", "id", "hidden", client.id, "hidden");
+    const inputFacturacionName = new FormField("Nombre facturación: ", "facturation-name", "text", client.name, "client-form-fieldset");
+    const inputAlias = new FormField("Nombre comercial: ", "alias", "text", client.alias, "client-form-fieldset");
+    const inputCif = new FormField("C.I.F.: ", "cif", "text", client.cif, "client-form-fieldset");
+    const inputPhone = new FormField("Teléfono: ", "phone", "text", client.phone, "client-form-fieldset");
+    const inputAddress = new FormField("Dirección: ", "address", "text", client.address, "client-form-fieldset");
+    const inputCP = new FormField("C.P.: ", "cp", "text", client.cp, "client-form-fieldset");
+    const inputProvince = new FormField("Provincia: ", "province", "text", client.province, "client-form-fieldset");
+    const inputPopulation = new FormField("Población: ", "population", "text", client.population, "client-form-fieldset");
+    //const inputCountry = new FormField("Pais: ", "country", "text", client.pais, "client-form-fieldset");
 
-      const saveButton = document.createElement("button");
-      saveButton.classList.add("save-button");
-      saveButton.textContent = "Guardar cambios";
-      saveButton.addEventListener("click", (e) => {
-        e.preventDefault();
-        updateClient();
-      });
-      clientFormData.append(
-        clientId,
-        inputId.container,
-        checkActive.container,
-        inputFacturacionName.container,
-        inputAlias.container,
-        inputCif.container,
-        inputPhone.container,
-        inputAddress.container,
-        inputCP.container,
-        inputPopulation.container,
-        inputProvince.container,
-        //inputCountry.container,
-        saveButton
-      );
-    
-   
+    const saveButton = document.createElement("button");
+    saveButton.classList.add("save-button");
+    saveButton.textContent = "Guardar cambios";
+    saveButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      updateClient();
+    });
+    clientFormData.append(
+      clientId,
+      inputId.container,
+      checkActive.container,
+      inputFacturacionName.container,
+      inputAlias.container,
+      inputCif.container,
+      inputPhone.container,
+      inputAddress.container,
+      inputCP.container,
+      inputPopulation.container,
+      inputProvince.container,
+      //inputCountry.container,
+      saveButton
+    );
   }
-
 }
 /////////////////
 
-
-function setFormNewClient () {
+function setFormNewClient() {
   dashBoard.innerHTML = "";
   pageTitle.textContent = "Nuevo Cliente";
-
 
   const clientFormEdit = document.createElement("form");
   clientFormEdit.id = "client-form";
@@ -267,92 +322,86 @@ function setFormNewClient () {
   dashBoard.append(clientFormEdit);
 
   setClientData();
-  
-  setClientContacts();
-  
 
- 
+  setClientContacts();
 
   function setClientData() {
-   
-      const checkActive = new FormField("Cliente activo: ", "active", "checkbox", "", "client-form-fieldset");
-  
-      checkActive.container.querySelector("input").value = 1;
+    const checkActive = new FormField("Cliente activo: ", "active", "checkbox", "", "client-form-fieldset");
 
-      checkActive.container.querySelector("input").addEventListener("change", (e) => {
-        if (e.target.checked) {
-          e.target.value = 1;
-        } else {
-          e.target.value = 0;
-        }
-      });
+    checkActive.container.querySelector("input").value = 1;
 
+    checkActive.container.querySelector("input").addEventListener("change", (e) => {
+      if (e.target.checked) {
+        e.target.value = 1;
+      } else {
+        e.target.value = 0;
+      }
+    });
 
-      const inputId = new FormField("id:", "id", "hidden", "", "hidden");
-      const inputFacturacionName = new FormField("Nombre facturación: ", "facturation-name", "text", "", "client-form-fieldset");
-      const inputAlias = new FormField("Nombre comercial: ", "alias", "text", "", "client-form-fieldset");
-      const inputCif = new FormField("C.I.F.: ", "cif", "text", "", "client-form-fieldset");
-      const inputPhone = new FormField("Teléfono: ", "phone", "text","", "client-form-fieldset");
-      const inputAddress = new FormField("Dirección: ", "address", "text", "", "client-form-fieldset");
-      const inputCP = new FormField("C.P.: ", "cp", "text", "", "client-form-fieldset");
-      const inputProvince = new FormField("Provincia: ", "province", "text", "", "client-form-fieldset");
-      const inputPopulation = new FormField("Población: ", "population", "text", "", "client-form-fieldset");
-      //const inputCountry = new FormField("Pais: ", "country", "text", client.pais, "client-form-fieldset");
+    const inputId = new FormField("id:", "id", "hidden", "", "hidden");
+    const inputFacturacionName = new FormField("Nombre facturación: ", "facturation-name", "text", "", "client-form-fieldset");
+    const inputAlias = new FormField("Nombre comercial: ", "alias", "text", "", "client-form-fieldset");
+    const inputCif = new FormField("C.I.F.: ", "cif", "text", "", "client-form-fieldset");
+    const inputPhone = new FormField("Teléfono: ", "phone", "text", "", "client-form-fieldset");
+    const inputAddress = new FormField("Dirección: ", "address", "text", "", "client-form-fieldset");
+    const inputCP = new FormField("C.P.: ", "cp", "text", "", "client-form-fieldset");
+    const inputProvince = new FormField("Provincia: ", "province", "text", "", "client-form-fieldset");
+    const inputPopulation = new FormField("Población: ", "population", "text", "", "client-form-fieldset");
+    //const inputCountry = new FormField("Pais: ", "country", "text", client.pais, "client-form-fieldset");
 
-      const saveButton = document.createElement("button");
-      saveButton.classList.add("save-button");
-      saveButton.textContent = "Guardar cambios";
-      saveButton.addEventListener("click", (e) => {
-        e.preventDefault();
-        saveNewClient();
-      });
-      clientFormData.append(
-        inputId.container,
-        //checkActive.container,
-        inputFacturacionName.container,
-        inputAlias.container,
-        inputCif.container,
-        inputPhone.container,
-        inputAddress.container,
-        inputCP.container,
-        inputPopulation.container,
-        inputProvince.container,
-        //inputCountry.container,
-        saveButton
-      );
-      
-      function saveNewClient(){
-        const datosFormulario = new FormData(document.querySelector("#client-form"));
-        //console.log(datosFormulario);
-        if(datosFormulario.get("facturation-name") != ""){
+    const saveButton = document.createElement("button");
+    saveButton.classList.add("save-button");
+    saveButton.textContent = "Guardar cambios";
+    saveButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      saveNewClient();
+    });
+    clientFormData.append(
+      inputId.container,
+      //checkActive.container,
+      inputFacturacionName.container,
+      inputAlias.container,
+      inputCif.container,
+      inputPhone.container,
+      inputAddress.container,
+      inputCP.container,
+      inputPopulation.container,
+      inputProvince.container,
+      //inputCountry.container,
+      saveButton
+    );
 
-          const headers = setHeadersAuthSesion(); // Este método esta en el archivo de session.js        
-          fetch(globalClientPost,
-            {
-              method : "POST",
-              headers: headers,
-              body : datosFormulario
-            }).then(response=>response.json().then(data=>{
-              if(data[0] == 200){
+    function saveNewClient() {
+      const datosFormulario = new FormData(document.querySelector("#client-form"));
+      //console.log(datosFormulario);
+      if (datosFormulario.get("facturation-name") != "") {
+        const headers = setHeadersAuthSesion(); // Este método esta en el archivo de session.js
+        fetch(globalClientPost, {
+          method: "POST",
+          headers: headers,
+          body: datosFormulario,
+        })
+          .then((response) =>
+            response.json().then((data) => {
+              if (data[0] == 200) {
                 //modalMessage("success","El alta se ha realizado correctamente");
-                const newModal = new Modal("newClient","El alta se ha realizado correctamente");
+                const newModal = new Modal("newClient", "El alta se ha realizado correctamente");
                 dashBoard.append(newModal.container);
                 clientFormEdit.reset();
               }
-              console.log("Mensaje del servidor:" , data);
-            })).catch(error=>{
-              const newModal = new modalMessage(error);
-              dashBoard.append(newModal.container);
-              console.error("Error:", error);
+              console.log("Mensaje del servidor:", data);
             })
-        }else{
-          //console.log("Show error")
-        }
+          )
+          .catch((error) => {
+            const newModal = new modalMessage(error);
+            dashBoard.append(newModal.container);
+            console.error("Error:", error);
+          });
+      } else {
+        //console.log("Show error")
       }
-    
-   
+    }
   }
- 
 }
 function updateClient() {
   // console.log(sessionData.token,sessionData.id);
