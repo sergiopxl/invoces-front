@@ -3,11 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
   <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/navigation.min.css">
+  <link rel="stylesheet" href="../css/common.min.css">
+  
+  <script src="../utilities/loader.js"></script>
+  <script src="../utilities/session.js"></script>
+  <script src="../entities/client_class.js"></script>
+  <script src="../entities/form_field_class.js"></script>
+  <script src="../utilities/environment.js"></script>
+  <script src="clients.js" defer></script>
+  <script src="../utilities/navigation.js" defer></script>
+
   <title>Document</title>
 </head>
 <body>
-  <h1>hello world</h1>
-  
+  <header>
+    <nav id="nav-main">
+      <ul>
+        <li id="nav-inicio">Inicio</li>
+        <li class="nav-parent">Empresas
+          <ul>
+            <li id="nav-clientes">Clientes</li>
+            <li id="nav-proveedores">Proveedores</li>
+          </ul>
+        </li>
+        <li class="nav-parent">Facturas
+          <ul>
+            <li id="nav-ingresos">Ingresos</li>
+            <li id="nav-rectificativas">Rectificativas</li>
+            <li id="nav-gastos">Gastos</li>
+          </ul>
+        </li>
+        <li id="nav-presupuestos">Presupuestos</li>
+        <li class="nav-parent">Cobros
+          <ul>
+            <li id="nav-pendientes">Pendientes</li>
+            <li id="nav-calendario">Calendario</li>
+            <li id="nav-informes">Informes</li>
+            <li id="nav-graficos">Gráficos</li>
+          </ul>
+        </li>
+        <li id="nav-contabilidad" class="nav-parent">Contabilidad analítica
+          <ul>
+            <li id="nav-analitica-listado">Listado</li>
+            <li id="nav-analitica-totales">Totales</li>
+            <li id="nav-analitica-clientes">Clientes</li>
+          </ul>
+        </li>
+        <li class="nav-parent">Herramienta
+          <ul>
+            <li id="nav-usuarios">Usuarios</li>
+            <li id="nav-configuracion">Configuración</li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <div class="page-title-section">
+    <h1 id="page-title-h1"></h1>
+  </div>
+
+  <div id="breadcrumbs"></div>
+
+  <main id="dashboard">
+
+  </main>
 </body>
 </html>

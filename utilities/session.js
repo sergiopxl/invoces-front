@@ -8,7 +8,7 @@ const getSession = ()=>{
   if(sessionVar){
     return JSON.parse(sessionVar);
   }else{
-    window.location = "index.html";
+    window.location = "../index.html";
   }
 }
 function setHeadersAuthSesion(){
