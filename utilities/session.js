@@ -12,7 +12,7 @@ const getSession = ()=>{
   }
 }
 function setHeadersAuthSesion(){
-  console.log(sessionData.token, sessionData.id);
+  //console.log(sessionData.token, sessionData.id);
   const token = sessionData.token;
   const userId = sessionData.id;
   const headers = new Headers();

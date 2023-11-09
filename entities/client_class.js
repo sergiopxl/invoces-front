@@ -11,9 +11,8 @@ class Client {
   address;
   contacts;
 
-  constructor(client) {
-    this.container.classList.add("client-row");
-
+  constructor(client,cssClass) {
+    this.container.classList.add(cssClass);
     this.id = client.id;
     this.brand = client.alias;
     this.name = client.name;
