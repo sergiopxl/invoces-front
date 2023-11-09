@@ -4,18 +4,21 @@
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  padding: 2rem 3rem 3rem;
+  padding: 1rem 2rem 2rem;
   background-color: #666;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  max-width: 33%;
+  max-width: 60%;
   border-radius: 0.3rem;
 }
 .modal.success {
   border-top: 2rem solid rgb(87, 123, 8);
 }
 .modal.error {
+  border-top: 2rem solid indianred;
+}
+.modal.form {
   border-top: 2rem solid indianred;
 }
 .modal .btnClose {

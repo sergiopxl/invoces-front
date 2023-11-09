@@ -102,6 +102,9 @@ a {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
   cursor: pointer;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
 }
 .save-button:hover {
   background-color: white;
@@ -119,6 +122,9 @@ a {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
   cursor: pointer;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
 }
 .delete-button:hover {
   background-color: white;
@@ -136,6 +142,9 @@ a {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
   cursor: pointer;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
 }
 .action-button:hover {
   background-color: white;

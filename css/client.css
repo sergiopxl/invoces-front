@@ -121,36 +121,36 @@ $background4: indianred;*/
   display: -ms-flexbox;
   display: flex;
   /* .client-form-contacts{
-     flex: 1;
-     padding: $regular-padding;
-     .contact-header-block{
-       display: flex;
-       padding: $regular-padding;
-       gap: $regular-padding;
-       justify-content: space-between;
-       h3{ 
-         display: flex;
-         align-items: center;
-         gap: $small-padding;
-         margin: 0;
-         span{
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           padding: $regular-padding;
-           width: 30px;
-           height: 30px;
-           font-size: 75%;
-           border-radius: 50%;
-           background-color: steelblue;
-           color: whitesmoke;
-         }
-       }
-     }
-     .client-contact-block{
-       margin: $regular-margin;
-     }
-   }*/
+    flex: 1;
+    padding: $regular-padding;
+    .contact-header-block{
+      display: flex;
+      padding: $regular-padding;
+      gap: $regular-padding;
+      justify-content: space-between;
+      h3{ 
+        display: flex;
+        align-items: center;
+        gap: $small-padding;
+        margin: 0;
+        span{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: $regular-padding;
+          width: 30px;
+          height: 30px;
+          font-size: 75%;
+          border-radius: 50%;
+          background-color: steelblue;
+          color: whitesmoke;
+        }
+      }
+    }
+    .client-contact-block{
+      margin: $regular-margin;
+    }
+  }*/
 }
 #client-form .client-form-data-block {
   width: 100%;
@@ -198,39 +198,40 @@ $background4: indianred;*/
       -ms-flex-direction: column;
           flex-direction: column;
 }
-#contacts-forms .contact-form-data-block {
+
+.contact-form-data-block {
   width: 100%;
   padding: 0.5rem;
 }
-#contacts-forms .contact-form-data-block .header-form {
+.contact-form-data-block .header-form {
   display: block;
   margin: 0.5rem;
   padding: 0.5rem;
   background-color: var(--bg2);
   border-radius: 3px;
 }
-#contacts-forms .contact-form-data-block .client-form-fieldset {
+.contact-form-data-block .client-form-fieldset {
   display: grid;
   grid-template-columns: 40% auto;
   padding: 0.5rem;
 }
-#contacts-forms .contact-form-data-block .client-form-fieldset input {
+.contact-form-data-block .client-form-fieldset input {
   width: 100%;
   padding: 0.5rem;
 }
-#contacts-forms .contact-form-data-block .client-form-fieldset input[type=checkbox] {
+.contact-form-data-block .client-form-fieldset input[type=checkbox] {
   max-width: -webkit-max-content;
   max-width: -moz-max-content;
   max-width: max-content;
   -ms-flex-item-align: start;
       align-self: start;
 }
-#contacts-forms .contact-form-data-block .client-form-fieldset input[type=text] {
+.contact-form-data-block .client-form-fieldset input[type=text] {
   border: 0;
   border-bottom: 1px solid var(--bg2);
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-#contacts-forms .contact-form-data-block .client-form-fieldset input[type=text]:focus {
+.contact-form-data-block .client-form-fieldset input[type=text]:focus {
   outline: 0;
 }/*# sourceMappingURL=client.css.map */

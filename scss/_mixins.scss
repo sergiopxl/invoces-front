@@ -20,6 +20,7 @@
   color: white;
   transition: all .5s;
   cursor: pointer;
+  max-width: max-content;
   &:hover{
     background-color: white;
     border-color: $buttonColor;
