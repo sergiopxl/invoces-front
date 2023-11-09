@@ -9,8 +9,11 @@ let allClients;
 let sessionData;
 const dashBoard = document.querySelector("#dashboard");
 const pageTitle = document.querySelector("#page-title-h1");
+const editionWrapper = document.createElement("div");
+editionWrapper.classList.add("edition-wrapper");
 
 const clientList = () => {
+
   pageTitle.textContent = "Listado de clientes";
   sessionData = getSession();
   //console.log("sessionData: ",sessionData)
@@ -151,6 +154,7 @@ const clientEdit = (idCliente) => {
   let finded = allClients.find((client) => client.id == idCliente);
 
   if (finded != undefined) {
+    editionWrapper.innerHTML= "";
     pageTitle.textContent = "Editando cliente: " + finded.name;
     setFormUpadateClient(finded);
     //console.log("encontrado: ", finded)
@@ -158,9 +162,10 @@ const clientEdit = (idCliente) => {
 };
 
 function setFormUpadateClient(client) {
+  
   dashBoard.innerHTML = "";
   console.log("setFormUpadateClient: ", client);
-
+  dashBoard.append(editionWrapper)
   /*const clientFormEdit = document.createElement("form");
   clientFormEdit.id = "client-form";*/
   const clientFormEditFields = new Array();
@@ -238,76 +243,73 @@ function setFormUpadateClient(client) {
 
   clientFormEditFields.push(fieldId,fieldActive,fieldName,fieldAlias,fieldCif,fieldPhone,fieldAddress,fieldCP,fieldProvince,fieldPopulation);
 
-  const clientFormEdit = new Form("id: " + client.id,"client-form", "UPDATE", clientFormEditFields, updateClient);
-  
-  /*function saluda() {
-    alert("hola");
-  }*/
+  const clientFormEdit = new Form("id: " + client.id,"client-form", "PUT", clientFormEditFields,"client-form-data-block", updateClient); 
 
   const clientFormData = document.createElement("div");
   clientFormData.classList.add("client-form-data-block");
-  //clientFormEdit.append(clientFormData);
-  dashBoard.append(clientFormEdit.container);
+  editionWrapper.append(clientFormEdit.container);
 
-  //setClientData(client);
-  //clientFormEdit.append(setClientContacts(client));
+  setClientContacts(client.contactos);
 
-  function setClientData(client) {
-    const checkActive = new FormField("Cliente activo: ", "active", "checkbox", "", "client-form-fieldset");
-    if (client.activo == 1) {
-      checkActive.container.querySelector("input").setAttribute("checked", "checked");
-      checkActive.container.querySelector("input").value = 1;
-    } else {
-      checkActive.container.querySelector("input").value = 1;
-    }
-    checkActive.container.querySelector("input").addEventListener("change", (e) => {
-      if (e.target.checked) {
-        e.target.value = 1;
-      } else {
-        e.target.value = 0;
-      }
-    });
-    const clientId = document.createElement("small");
-    clientId.classList.add("client-form-id");
-    clientId.textContent = "id: " + client.id;
-
-    const inputId = new FormField("id:", "id", "hidden", client.id, "hidden");
-    const inputFacturacionName = new FormField("Nombre facturación: ", "facturation-name", "text", client.name, "client-form-fieldset");
-    const inputAlias = new FormField("Nombre comercial: ", "alias", "text", client.alias, "client-form-fieldset");
-    const inputCif = new FormField("C.I.F.: ", "cif", "text", client.cif, "client-form-fieldset");
-    const inputPhone = new FormField("Teléfono: ", "phone", "text", client.phone, "client-form-fieldset");
-    const inputAddress = new FormField("Dirección: ", "address", "text", client.address, "client-form-fieldset");
-    const inputCP = new FormField("C.P.: ", "cp", "text", client.cp, "client-form-fieldset");
-    const inputProvince = new FormField("Provincia: ", "province", "text", client.province, "client-form-fieldset");
-    const inputPopulation = new FormField("Población: ", "population", "text", client.population, "client-form-fieldset");
-    //const inputCountry = new FormField("Pais: ", "country", "text", client.pais, "client-form-fieldset");
-
-    const saveButton = document.createElement("button");
-    saveButton.classList.add("save-button");
-    saveButton.textContent = "Guardar cambios";
-    saveButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      updateClient();
-    });
-    clientFormData.append(
-      clientId,
-      inputId.container,
-      checkActive.container,
-      inputFacturacionName.container,
-      inputAlias.container,
-      inputCif.container,
-      inputPhone.container,
-      inputAddress.container,
-      inputCP.container,
-      inputPopulation.container,
-      inputProvince.container,
-      //inputCountry.container,
-      saveButton
-    );
-  }
 }
 /////////////////
+function setClientContacts (contacts){
+  const contactsBlock = document.createElement("div");
+  contactsBlock.id = "contacts-forms";
+  editionWrapper.append(contactsBlock);
+  //console.log(contacts);
+  contacts.forEach((contact,index)=>{
+    console.log(contact);
+    const contactFormFields = new Array();
+    const fieldId = {
+      label: "id:",
+      name: "id",
+      type: "hidden",
+      data: contact.id,
+      cssClass: "hidden",
+    };
+    const fieldName = {
+      label: "Nombre: ",
+      name: "name",
+      type: "text",
+      data: contact.name,
+      cssClass: "client-form-fieldset"
+    };
+    const fieldApell1 = {
+      label: "Primer apellido: ",
+      name: "apell1",
+      type: "text",
+      data: contact.apell1,
+      cssClass: "client-form-fieldset"
+    };
+    const fieldApell2 = {
+      label: "Segundo apellido: ",
+      name: "apell2",
+      type: "text",
+      data: contact.apell2,
+      cssClass: "client-form-fieldset"
+    };
+    const fieldPhone = {
+      label: "Telefono: ",
+      name: "phone1",
+      type: "text",
+      data: contact.phone1,
+      cssClass: "client-form-fieldset"
+    };
+    const fieldEmail = {
+      label: "Email: ",
+      name: "mail1",
+      type: "text",
+      data: contact.mail1,
+      cssClass: "client-form-fieldset"
+    };
+    contactFormFields.push(fieldId,fieldName,fieldApell1,fieldApell2,fieldPhone,fieldEmail);
+    const contactFormEdit = new Form("id: " + contact.id,"contact-form-"+index, "PUT", contactFormFields,"contact-form-data-block", updateContact, "#contact-form-"+index);
+    contactsBlock.append(contactFormEdit.container);
+  })
 
+
+}
 function setFormNewClient() {
   dashBoard.innerHTML = "";
   pageTitle.textContent = "Nuevo Cliente";
@@ -371,36 +373,38 @@ function setFormNewClient() {
       saveButton
     );
 
-    function saveNewClient() {
-      const datosFormulario = new FormData(document.querySelector("#client-form"));
-      //console.log(datosFormulario);
-      if (datosFormulario.get("facturation-name") != "") {
-        const headers = setHeadersAuthSesion(); // Este método esta en el archivo de session.js
-        fetch(globalClientPost, {
-          method: "POST",
-          headers: headers,
-          body: datosFormulario,
+
+  }
+}
+
+function saveNewClient() {
+  const datosFormulario = new FormData(document.querySelector("#client-form"));
+  //console.log(datosFormulario);
+  if (datosFormulario.get("facturation-name") != "") {
+    const headers = setHeadersAuthSesion(); // Este método esta en el archivo de session.js
+    fetch(globalClientPost, {
+      method: "POST",
+      headers: headers,
+      body: datosFormulario,
+    })
+      .then((response) =>
+        response.json().then((data) => {
+          if (data[0] == 200) {
+            //modalMessage("success","El alta se ha realizado correctamente");
+            const mensajeConfirmacion = new Modal("success", "El alta se ha realizado correctamente");
+            dashBoard.append(mensajeConfirmacion.container);
+            clientFormEdit.reset();
+          }
+          console.log("Mensaje del servidor:", data);
         })
-          .then((response) =>
-            response.json().then((data) => {
-              if (data[0] == 200) {
-                //modalMessage("success","El alta se ha realizado correctamente");
-                const newModal = new Modal("newClient", "El alta se ha realizado correctamente");
-                dashBoard.append(newModal.container);
-                clientFormEdit.reset();
-              }
-              console.log("Mensaje del servidor:", data);
-            })
-          )
-          .catch((error) => {
-            const newModal = new modalMessage(error);
-            dashBoard.append(newModal.container);
-            console.error("Error:", error);
-          });
-      } else {
-        //console.log("Show error")
-      }
-    }
+      )
+      .catch((error) => {
+        const mensajeError = new Modal("error", "Hemos tenido el siguient error: "+error);
+        dashBoard.append(mensajeError.container);
+        console.error("Error:", error);
+      });
+  } else {
+    //console.log("Show error")
   }
 }
 function updateClient() {
@@ -422,15 +426,61 @@ function updateClient() {
   }).then((response) => {
     // console.log(response);
     response.json().then((data) => {
-      // console.log(data);
-      if (data[0] == 404) {
+      //console.log(data);
+      if (data == 404) {
         alert("Usuario no logado");
-        window.location = "index.html";
+        window.location = "../index.html";
       }
-      if (data[0] == 401) {
+      if (data == 401) {
         alert("Tiempo de sesion expirado");
-        window.location = "index.html";
+        window.location = "../index.html";
       }
+      if (data == 200){
+        const mensajeConfirmacion = new Modal("success","Los datos del cliente se han actualizado correctamente");
+        dashBoard.append(mensajeConfirmacion.container);
+      }
+
     });
   });
 }
+
+function updateContact(form){
+  // console.log(sessionData.token,sessionData.id);
+  const token = sessionData.token;
+  const userId = sessionData.id;
+  const headers = new Headers();
+  //headers.append("Authorization", `Bearer ${token}`);
+  headers.append("X-User-ID", userId);
+  headers.append("X-Token", token);
+  //console.log(headers);
+  //console.log(idCliente);
+  const datosFormulario = new FormData(document.querySelector(form));
+  //console.log("datos formulario", datosFormulario);
+  fetch(globalContactUpdate, {
+    method: "POST",
+    headers: headers,
+    body: datosFormulario,
+  }).then((response) => {
+    // console.log(response);
+    response.json().then((data) => {
+      //console.log(data);
+      if (data == 404) {
+        alert("Usuario no logado");
+        window.location = "../index.html";
+      }
+      if (data == 401) {
+        alert("Tiempo de sesion expirado");
+        window.location = "../index.html";
+      }
+      if (data == 200){
+        const mensajeConfirmacion = new Modal("success","Los datos del contacto se han actualizado correctamente");
+        dashBoard.append(mensajeConfirmacion.container);
+      }
+
+    });
+  });
+}
+
+ function saluda(x) {
+    alert("hola"+x);
+  }

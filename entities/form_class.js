@@ -3,17 +3,22 @@ class Form{
   wrapper;
   saveButton;
   header
-  constructor(headerContent,id,method,fields,action){
+  constructor(headerContent,id,method,fields,cssClassBlock,action,actionParams){
     this.container = document.createElement("form");
     this.container.id = id;
     this.wrapper = document.createElement("div");
-    this.wrapper.classList.add("client-form-data-block");
+    this.wrapper.classList.add(cssClassBlock);
     this.saveButton =  document.createElement("button");
     this.saveButton.classList.add("save-button");
     this.saveButton.textContent = "Guardar cambios";
     this.saveButton.addEventListener("click", (e) => {
       e.preventDefault();
-      action();
+      if(actionParams && actionParams != ""){
+        action(actionParams);
+      }else{
+        action();
+      }
+      
     });
     if(headerContent && headerContent != ""){
       this.header = document.createElement("small");
@@ -23,15 +28,13 @@ class Form{
     }
     this.container.append(this.wrapper);
     switch(method){
-      case "UPDATE" : 
+      case "PUT" : 
      this.setFields(fields);
     }
     this.wrapper.append(this.saveButton);
   }
   setFields(fields){
-    console.log("fields[0]",fields[0].data);
-    //TODO: estoy hay que repensarlo por que tiene numeros mágicos y no es legible
-    fields.forEach(field => {      
+       fields.forEach(field => {      
       const newField = new FormField(field.label,field.name,field.type,field.data,field.cssClass);
       this.wrapper.append(newField.container);
     });
@@ -61,7 +64,7 @@ class FormField {
     }else{
       this.fieldInput.value = "";
     }
-    if(type == "checkbox"){
+    if(type == "checkbox" && data == 1){
       this.fieldInput.setAttribute("checked", "checked");
     }
     
