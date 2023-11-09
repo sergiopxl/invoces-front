@@ -1,13 +1,20 @@
+@import "_vars";
 .modal {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 1rem 2rem 2rem;
-  background-color: #666;
+  padding: $big-padding $regular-padding ;
+  background-color: $background1;
   width: max-content;
   max-width: 60%;
   border-radius: .3rem;
+  .btnClose {
+    position: absolute;
+    top: -1.6rem;
+    right: 0.7rem;
+    cursor: pointer;
+  }
 
   &.success {
     border-top: 2rem solid rgb(87, 123, 8);
@@ -16,12 +23,18 @@
     border-top: 2rem solid indianred;
   }
   &.form {
-    border-top: 2rem solid indianred;
+    width: 30%;
+    .btnClose {
+      display: flex;
+      width: 24px;
+      height: 24px;
+      align-items: center;
+      justify-content: center;
+      background-color: $background5;
+      top: 0;
+      right: 0;
+      border-radius:0 .3rem 0 .3rem;
+    }
   }
-  .btnClose {
-    position: absolute;
-    top: -1.6rem;
-    right: 0.7rem;
-    cursor: pointer;
-  }
+
 }
